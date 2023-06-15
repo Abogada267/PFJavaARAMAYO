@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
   const comprarBtn = document.getElementById('comprar');
 
-
   const products = [
     {
       id: 1,
@@ -124,6 +123,28 @@ document.addEventListener('DOMContentLoaded', function() {
     cartItems.appendChild(totalElement);
   }
 
+  function filterConsultas() {
+    const filterValue = filterSelect.value;
+
+    let filteredConsultas = [];
+    if (filterValue === 'simple') {
+      filteredConsultas = products.filter((product) => product.type === 'simple');
+    } else if (filterValue === 'compleja') {
+      filteredConsultas = products.filter((product) => product.type === 'compleja');
+    } else {
+      filteredConsultas = products;
+    }
+
+    renderConsultas(filteredConsultas);
+  }
+
+  function comprar() {
+    // Lógica para completar la compra
+    alert('Compra completada');
+  }
+
+  filterSelect.addEventListener('change', filterConsultas);
+
   consultasContainer.addEventListener('click', function(event) {
     if (event.target.tagName === 'BUTTON') {
       const productId = parseInt(event.target.dataset.productId);
@@ -142,29 +163,25 @@ document.addEventListener('DOMContentLoaded', function() {
     cart.clearCart();
   });
 
-  comprarBtn.addEventListener('click', function() {
-    // Lógica para completar la compra
-    alert('Compra completada');
-  });
- 
-  renderConsultas(products);
+  comprarBtn.addEventListener('click', comprar);
+
+  filterConsultas();
   cart.loadCart();
+
+  // Fetch data from URL
+  let url = 'https://jsonplaceholder.typicode.com/users/';
+  fetch(url)
+    .then(response => response.json())
+    .then(data => mostrarData(data))
+    .catch(error => console.log(error));
+
+  function mostrarData(data) {
+    console.log(data);
+    let body = "";
+    for (var i = 0; i < data.length; i++) {      
+      body += `<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`;
+    }
+    document.getElementById('data').innerHTML = body;
+  }
 });
 
-
-
-
-  let url = 'https://jsonplaceholder.typicode.com/users/';
-    fetch(url)
-        .then(response => response.json())
-        .then(data => mostrarData(data))
-        .catch(error => console.log(error))
-
-    const mostrarData = (data) => {
-        console.log(data)
-        let body = ""
-        for (var i = 0; i < data.length; i++) {      
-           body += `<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
-        }
-        document.getElementById('data').innerHTML = body;
-    }
