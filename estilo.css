@@ -1,89 +1,118 @@
- /* Estilos generales */
- body {
-     font-family: Arial, sans-serif;
-     margin: 0;
-     padding: 20px;
-     background-color: #e2e1e7;
-     /* Fondo blanco */
- }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
- table thead {
-     background: #3e31ce;
-     color: white;
- }
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
 
- h1 {
-     text-align: center;
-     color: #000000;
- }
+header h1 {
+    margin: 0;
+}
 
- h2 {
-     margin-top: 20px;
-     color: #1d1715db;
- }
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
- button {
-     padding: 5px 10px;
- }
+section {
+    margin-bottom: 20px;
+}
 
- /* Estilos para las cartas */
- .card-container {
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: center;
- }
+h2 {
+    margin-top: 0;
+}
 
- .consulta {
-     border: 1px solid #161515;
-     padding: 10px;
-     margin: 10px;
-     width: 300px;
-     background-color: #62b0c5;
-     /* Fondo marino */
-     color: #000000;
-     /* Letras negras */
- }
+label {
+    display: block;
+    margin-bottom: 5px;
+}
 
- .consulta h3 {
-     margin-top: 0;
- }
+select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
 
- /* Estilos para el filtro */
- #filter {
-     margin-bottom: 20px;
-     color: #62b0c5;
- }
+#consultas-container {
+    display: flex;
+    flex-wrap: wrap;
+}
 
- /* Estilos para el carrito */
- #cart {
-     margin-top: 20px;
- }
+.consulta {
+    flex: 1 0 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
 
- #cart-items {
-     list-style: none;
-     padding: 0;
- }
+.consulta h3 {
+    margin-top: 0;
+}
 
- #cart-items li {
-     margin-bottom: 10px;
- }
+.consulta p {
+    margin-bottom: 10px;
+}
 
- #total {
-     font-weight: bold;
- }
+.consulta button {
+    background-color: #ff69b4;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
- #vaciar-carrito,
- #comprar {
-     margin-top: 10px;
- }
+#cart-items {
+    list-style: none;
+    padding: 0;
+}
 
- .hidden {
-     opacity: 0;
-     transition: opacity 0.3s ease-in-out;
- }
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
- /* Estilos para los productos en el carrito */
- #cart-items li span {
-     color: #302b63;
-     /* Azul marino claro */
- }
+#cart-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#cart-actions button {
+    margin-left: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#total {
+    font-weight: bold;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
