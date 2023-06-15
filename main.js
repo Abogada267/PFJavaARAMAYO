@@ -1,14 +1,30 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const filterSelect = document.getElementById('filter-select');
   const consultasContainer = document.getElementById('consultas-container');
   const cartItems = document.getElementById('cart-items');
   const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
   const comprarBtn = document.getElementById('comprar');
+  const requestBtn = document.getElementById('request-btn');
+  const responseContainer = document.getElementById('response-container');
 
+  function mostrarData(data) {
+    let body = "";
+    for (var i = 0; i < data.length; i++) {      
+       body += `<p>Nombre: ${data[i].name}, Apellido: ${data[i].username},email: ${data[i].email}</p>`;
+    }
+    responseContainer.innerHTML = body;
+  }
+requestBtn.addEventListener('click', function() {
+    let url = 'https://jsonplaceholder.typicode.com/users/';
+    fetch(url)
+      .then(response => response.json())
+      .then(data => mostrarData(data))
+      .catch(error => console.log(error));
+  });
   const products = [
     {
       id: 1,
-      name: 'Consulta por WhatsApp',
+      name: 'Consulta por Wassap',
       type: 'simple',
       price: 2750
     },
@@ -32,22 +48,22 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     {
       id: 5,
-      name: 'Consulta de Expediente (con asesoramiento con intervención)',
+      name: 'Consulta de Expediente (con asesoramiento con intervencion)',
       type: 'compleja',
       price: 5500
     },
     {
       id: 6,
-      name: 'Contestación de demanda (con intervención en audiencias)',
+      name: 'Contestacion de demanda (con intervencion en audiencias)',
       type: 'compleja',
       price: 5500
-    }
+    },
   ];
 
   const cart = {
     items: [],
 
-    addToCart: function(productId) {
+    addToCart: function (productId) {
       const product = products.find((item) => item.id === productId);
       if (product) {
         this.items.push(product);
@@ -56,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
 
-    removeFromCart: function(productId) {
+    removeFromCart: function (productId) {
       const index = this.items.findIndex((item) => item.id === productId);
       if (index !== -1) {
         this.items.splice(index, 1);
@@ -65,17 +81,17 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
 
-    clearCart: function() {
+    clearCart: function () {
       this.items = [];
       this.saveCart();
       renderCart();
     },
 
-    saveCart: function() {
+    saveCart: function () {
       localStorage.setItem('cart', JSON.stringify(this.items));
     },
 
-    loadCart: function() {
+    loadCart: function () {
       const cartData = localStorage.getItem('cart');
       if (cartData) {
         this.items = JSON.parse(cartData);
@@ -83,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
 
-    calculateTotal: function() {
+    calculateTotal: function () {
       return this.items.reduce((total, item) => total + item.price, 0);
     }
   };
@@ -117,71 +133,96 @@ document.addEventListener('DOMContentLoaded', function() {
       cartItems.appendChild(li);
     });
 
-    const total = cart.calculateTotal();
-    const totalElement = document.createElement('li');
-    totalElement.innerHTML = `Total: $${total}`;
-    cartItems.appendChild(totalElement);
+    const totalElement = document.getElementById('total');
+    totalElement.textContent = `Total: $${cart.calculateTotal()}`;
   }
 
-  function filterConsultas() {
-    const filterValue = filterSelect.value;
+  // Cargar las consultas desde el archivo JSON
+  renderConsultas(products);
 
-    let filteredConsultas = [];
-    if (filterValue === 'simple') {
-      filteredConsultas = products.filter((product) => product.type === 'simple');
-    } else if (filterValue === 'compleja') {
-      filteredConsultas = products.filter((product) => product.type === 'compleja');
-    } else {
-      filteredConsultas = products;
+  // Filtrar consultas por tipo
+  filterSelect.addEventListener('change', function () {
+    const tipoSeleccionado = this.value;
+    let consultasFiltradas = [];
+
+    if (tipoSeleccionado === 'todos') {
+      consultasFiltradas = products;
+    } else if (tipoSeleccionado === 'simples') {
+      consultasFiltradas = products.filter(consulta => consulta.type === 'simple');
+    } else if (tipoSeleccionado === 'complejos') {
+      consultasFiltradas = products.filter(consulta => consulta.type === 'compleja');
     }
 
-    renderConsultas(filteredConsultas);
-  }
+    renderConsultas(consultasFiltradas);
+  });
 
-  function comprar() {
-    // Lógica para completar la compra
-    alert('Compra completada');
-  }
-
-  filterSelect.addEventListener('change', filterConsultas);
-
-  consultasContainer.addEventListener('click', function(event) {
-    if (event.target.tagName === 'BUTTON') {
-      const productId = parseInt(event.target.dataset.productId);
+  // Agregar consultas al carrito
+  consultasContainer.addEventListener('click', function (event) {
+    const target = event.target;
+    if (target.tagName === 'BUTTON') {
+      const productId = parseInt(target.getAttribute('data-product-id'));
       cart.addToCart(productId);
     }
   });
 
-  cartItems.addEventListener('click', function(event) {
-    if (event.target.tagName === 'BUTTON') {
-      const productId = parseInt(event.target.dataset.productId);
-      cart.removeFromCart(productId);
-    }
+  // Comprar consultas
+  comprarBtn.addEventListener('click', function () {
+    const montoTotal = cart.calculateTotal();
+    const urlMercadoPago = `https://link.mercadopago.com.ar/abogadamalvinaramayo`;
+
+    // Redireccionar a la página de Mercado Pago
+    window.location.href = urlMercadoPago;
   });
 
-  vaciarCarritoBtn.addEventListener('click', function() {
+
+  // Vaciar el carrito
+  vaciarCarritoBtn.addEventListener('click', function () {
     cart.clearCart();
   });
 
-  comprarBtn.addEventListener('click', comprar);
-
-  filterConsultas();
+  // Cargar el carrito desde el Local Storage al cargar la página
   cart.loadCart();
-
-  // Fetch data from URL
-  let url = 'https://jsonplaceholder.typicode.com/users/';
-  fetch(url)
-    .then(response => response.json())
-    .then(data => mostrarData(data))
-    .catch(error => console.log(error));
-
-  function mostrarData(data) {
-    console.log(data);
-    let body = "";
-    for (var i = 0; i < data.length; i++) {      
-      body += `<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`;
-    }
-    document.getElementById('data').innerHTML = body;
-  }
 });
 
+  // Fetch data from URL
+    let url = 'https://jsonplaceholder.typicode.com/users/';
+        fetch(url)
+            .then( response => response.json() )
+            .then( data => mostrarData(data) )
+            .catch( error => console.log(error) )
+
+        const mostrarData = (data) => {
+            console.log(data)
+            let body = ""
+            for (var i = 0; i < data.length; i++) {      
+               body+=`<tr><td>${data[i].id}</td><td>${data[i].name}</td><td>${data[i].email}</td></tr>`
+            }
+            document.getElementById('data').innerHTML = body
+            //console.log(body)
+        }
+  
+// Obtener referencias a los elementos del DOM
+const requestBtn = document.getElementById('request-btn');
+const responseContainer = document.getElementById('response-container');
+
+// Función para solicitar los datos de la API
+const requestData = () => {
+  const apiUrl = 'https://jsonplaceholder.typicode.com/users/';
+
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => displayResponse(data))
+    .catch(error => console.log(error));
+};
+
+// Función para mostrar la respuesta en el contenedor
+const displayResponse = (data) => {
+  responseContainer.innerHTML = '';
+
+  const responseText = document.createElement('p');
+  responseText.textContent = JSON.stringify(data);
+  responseContainer.appendChild(responseText);
+};
+
+// Agregar el evento click al botón de entrada
+requestBtn.addEventListener('click', requestData);

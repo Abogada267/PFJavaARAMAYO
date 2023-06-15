@@ -1,6 +1,38 @@
 [
-    {"id": 1,"nombre": "wassap", "precio": 1000 },
-    {"id": 2,"nombre": "telefonica", "precio": 1000 },
-    {"id": 3,"nombre": "presencial", "precio": 1000 },
-    {"id": 4,"nombre": "telematica", "precio": 1000 }
+  {
+    "id": 1,
+    "name": "Consulta por Wassap",
+    "type": "simple",
+    "price": 2750
+  },
+  {
+    "id": 2,
+    "name": "Consulta telefónica",
+    "type": "simple",
+    "price": 5500
+  },
+  {
+    "id": 3,
+    "name": "Consulta personal",
+    "type": "simple",
+    "price": 5500
+  },
+  {
+    "id": 4,
+    "name": "Consulta de Expediente (con asesoramiento sin intervención)",
+    "type": "compleja",
+    "price": 5500
+  },
+  {
+    "id": 5,
+    "name": "Consulta de Expediente (con asesoramiento con intervencion)",
+    "type": "compleja",
+    "price": 5500
+  },
+  {
+    "id": 6,
+    "name": "Contestacion de demanda (con intervencion en audiencias)",
+    "type": "compleja",
+    "price": 5500
+  }
 ]
