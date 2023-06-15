@@ -1,0 +1,6 @@
+{
+    "workbench.preferredDarkColorTheme": "Visual Studio Dark",
+    "workbench.preferredHighContrastColorTheme": "Community Material Theme Palenight High Contrast",
+    "testing.automaticallyOpenPeekViewDuringAutoRun": true,
+    "liveServer.settings.port": 5501
+}

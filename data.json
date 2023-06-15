@@ -1,0 +1,6 @@
+[
+    {"id": 1,"nombre": "wassap", "precio": 1000 },
+    {"id": 2,"nombre": "telefonica", "precio": 1000 },
+    {"id": 3,"nombre": "presencial", "precio": 1000 },
+    {"id": 4,"nombre": "telematica", "precio": 1000 }
+]
