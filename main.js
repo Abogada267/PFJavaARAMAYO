@@ -9,54 +9,67 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function mostrarData(data) {
     let body = "";
-    for (var i = 0; i < data.length; i++) {      
-       body += `<p>Nombre: ${data[i].name}, Apellido: ${data[i].username},email: ${data[i].email}</p>`;
+    for (var i = 0; i < data.length; i++) {
+      body += `
+        <div class="consulta">          
+          <img src="./images/${data[i].Image}" alt="Imagen del producto" style="width: 80%;">
+          <button data-product-id="${data[i].id}">Agregar al Carrito</button>
+          <p>Precio: ${data[i].price}</p>
+        </div>
+      `;
     }
-    responseContainer.innerHTML = body;
+    consultasContainer.innerHTML = body;
   }
-requestBtn.addEventListener('click', function() {
+
+  requestBtn.addEventListener('click', function () {
     let url = 'https://jsonplaceholder.typicode.com/users/';
     fetch(url)
       .then(response => response.json())
       .then(data => mostrarData(data))
       .catch(error => console.log(error));
   });
+
   const products = [
     {
       id: 1,
-      name: 'Consulta por Wassap',
       type: 'simple',
-      price: 2750
+      price: 2750,
+      Image: 'images/1.jpeg',
     },
     {
       id: 2,
       name: 'Consulta telefónica',
       type: 'simple',
-      price: 5500
+      price: 5500,
+      Image: 'images/2.jpeg',
     },
     {
       id: 3,
       name: 'Consulta personal',
       type: 'simple',
-      price: 5500
+      price: 5500,
+      Image: 'images/3.jpg',
     },
     {
       id: 4,
       name: 'Consulta de Expediente (con asesoramiento sin intervención)',
       type: 'compleja',
-      price: 5500
+      price: 5500,
+      Image: 'images/4.jpg',
     },
     {
       id: 5,
       name: 'Consulta de Expediente (con asesoramiento con intervencion)',
       type: 'compleja',
-      price: 5500
+      price: 5500,
+      Image: 'images/5.jpg',
     },
     {
       id: 6,
       name: 'Contestacion de demanda (con intervencion en audiencias)',
       type: 'compleja',
-      price: 5500
+      price: 5500,
+      Image: 'images/6.jpg',
     },
   ];
 
@@ -111,8 +124,8 @@ requestBtn.addEventListener('click', function() {
       const consultaDiv = document.createElement('div');
       consultaDiv.className = 'consulta';
       consultaDiv.innerHTML = `
-        <h3>${consulta.name}</h3>
-        <p>Precio: $${consulta.price}</p>
+         <p>Precio: ${consulta.price}</p>
+        <img src="${consulta.Image}" alt="Imagen del producto" style="width: 80%;">
         <button data-product-id="${consulta.id}">Agregar al Carrito</button>
       `;
 
@@ -184,7 +197,7 @@ requestBtn.addEventListener('click', function() {
   cart.loadCart();
 });
 
-  // Fetch data from URL
+ // Fetch data from URL
     let url = 'https://jsonplaceholder.typicode.com/users/';
         fetch(url)
             .then( response => response.json() )

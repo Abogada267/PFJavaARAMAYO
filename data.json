@@ -1,9 +1,9 @@
 [
   {
     "id": 1,
-    "name": "Consulta por Wassap",
-    "type": "simple",
+     "type": "simple",
     "price": 2750
+    
   },
   {
     "id": 2,

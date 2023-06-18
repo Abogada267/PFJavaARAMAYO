@@ -6,19 +6,26 @@ body {
 }
 
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-}
+    background-color: #232020be;
+     padding: 30px;
+    }
 
 header h1 {
     margin: 0;
+    font-style: normal;
+    font:200;
+    
+    
 }
 
+.menu-horizontal li {
+    display: inline;
+    margin-right: 10px;
+}
 main {
     max-width: 800px;
     margin: 20px auto;
-    background-color: #fff;
+    background-color: #f2eded;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -51,16 +58,17 @@ select {
 }
 
 .consulta {
-    flex: 1 0 200px;
-    margin-right: 20px;
+    flex: 4 3 200px;
+    margin-right: 30px;
     margin-bottom: 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
+    padding: 20px;
+    background-color: #b3bcb2e8;
     border-radius: 5px;
-}
+    }
 
 .consulta h3 {
     margin-top: 0;
+    color: #ff69b4;
 }
 
 .consulta p {
@@ -111,7 +119,7 @@ select {
 }
 
 footer {
-    background-color: #333;
+    background-color: #2b08b9;
     color: #fff;
     padding: 10px;
     text-align: center;

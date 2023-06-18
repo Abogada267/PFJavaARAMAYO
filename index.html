@@ -13,74 +13,88 @@
 <body>
     <header>
         <h1>Consultas Jurídicas Abogada Malvina Aramayo & Asociados</h1>
+        <img src="images/7.jpg" alt="logo" style="width: 5%;">
+        <input type="text" id="search-input" placeholder="Buscar">
+        <button id="search-btn">Buscar</button>
+        <nav>
+            <ul class="menu-horizontal">
+                <li><a href="#">Categorías</a></li>
+                <li><a href="#">Consultas</a></li>
+                <li><a href="#">Noticias</a></li>
+                <li><a href="#">Casos resueltos</a></li>
+                <li><a href="#">Ayuda</a></li>
+                <br>
+                <img src="" alt="" srcset="">
+            </ul>
+        </nav>
+        <div id="cart-summary"></div>
     </header>
+
+
     <main>
         <section id="filter-section">
-             <h2>Selecciona tipo de Consulta</h2>
-             <label for="filter-select">Filtrar por tipo de consulta:</label>
-    <select id="filter-select">
-        <option value="todos">Todos</option>
-        <option value="simples">Por simples</option>
-        <option value="complejos">Por complejos</option>
-    </select>
+            <h2>Selecciona tipo de Consulta</h2>
+            <label for="filter-select">Filtrar por tipo de consulta:</label>
+            <select id="filter-select">
+                <option value="todos">Todos</option>
+                <option value="simples">Por simples</option>
+                <option value="complejos">Por complejos</option>
+            </select>
         </section>
 
-<section id="consultas-container" class="card-container">
-    </section>
+        <section id="consultas-container" class="card-container">
+        </section>
 
-    
-   
-     
+        <section id="cart-section">
+            <h2>Carrito</h2>
+            <ul id="cart-items"></ul>
+            <p>Total: $<span id="total"></span></p>
+            <div id="cart-actions">
+                <button id="vaciar-carrito">Vaciar Carrito</button>
+                <button id="comprar">Comprar</button>
+            </div>
+        </section>
 
+        <div class="container mt-8 shadow-sm pt-3 mb-5 bg-body rounded">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Apellido y Nombre</th>
+                        <th>email</th>
+                    </tr>
+                </thead>
+                <tbody id="data">
+                </tbody>
+            </table>
+        </div>
 
-<section id="cart-section">
-    <h2>Carrito</h2>
-    <ul id="cart-items"></ul>
-    <p>Total: $<span id="total"></span></p>
-    <div id="cart-actions">
-    <button id="vaciar-carrito">Vaciar Carrito</button>
-    <button id="comprar">Comprar</button>
-</div>
-</section>
-   
-    <div class="container mt-8 shadow-sm pt-3 mb-5 bg-body rounded">
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Apellido y Nombre</th>
-                    <th>email</th>
-                                        
-                </tr>
-            </thead>
-            <tbody id="data">
-            </tbody>
-        </table>
-    </div>
-<div class="container mt-4 shadow-lg p-md-2 mb-5 bg-body rounded">
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody id="data">
-        </tbody>
-    </table>
-</div>
-<button id="request-btn" style="background-color: pink;">LISTA: Apellido Nombre y Correo electronico</button>
-<div id="response-container"></div>
-</main>
-<footer>
-    <p>© 2023 Dra. Malvina Aramayo. Todos los derechos reservados.</p>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-    crossorigin="anonymous">
-</script>
-     <script src="./main.js"></script>
+        <div class="container mt-4 shadow-lg p-md-2 mb-5 bg-body rounded">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody id="data">
+                </tbody>
+            </table>
+        </div>
+
+        <button id="request-btn" style="background-color: pink;">LISTA: Apellido Nombre y Correo electronico</button>
+        <div id="response-container"></div>
+    </main>
+
+    <footer>
+        <p>© 2023 Dra. Malvina Aramayo. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
+        </script>
+    <script src="./main.js"></script>
 </body>
 
 </html>
